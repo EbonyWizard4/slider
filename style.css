@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+    font-family: Montserrat;
+    background-color: #000;
+    color: #eee;
+    margin: 0;
+    font-size: 12px;
+}
+
+a{
+    text-decoration: none;
+    color: cadetblue;
+}
+
+header{
+    width: 1140px;
+    max-width: 80%;
+    margin: auto;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 100;
+}
+
+header a{
+    margin-right: 40px;
+}
+
+/* CACRROCEL */
+
+.carrosel{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin-top: -50px;
+    position: relative;
+}
+
+.carrosel .lista .item {
+    position: absolute;
+    inset: 0 0 0 0;
+}
+
+.carrosel .lista .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carrosel .lista .item .conteudo{
+    position: absolute;
+    top: 20%;
+    width: 1140px;
+    max-width: 80%;
+    left: 50%;
+    transform: translate(-50%);
+    padding-right: 30%;
+    box-sizing: border-box;
+    color: #aaa;
+    text-shadow: 0.5px 10px #0004;
+}
+
+.carrosel .lista .conteudo .author{
+    font-weight: bold;
+    letter-spacing: 10px;
+}
+
+.carrosel .lista .conteudo .title,
+.carrosel .lista .conteudo .topic{
+    font-weight: bold;
+    font-size: 5em;
+    list-style: 1.3em;
+}
+
+.carrosel .lista .conteudo .topic{
+    color: #f1683a;
+}
+
+.carrosel .lista .conteudo .buttons{
+    display: grid;
+    grid-template-columns: repeat(2, 130px);
+    grid-template-rows: 40px;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.carrosel .lista .conteudo button{
+    border: none;
+    background-color: #eee;
+    letter-spacing: 3px;
+    font-family: Montserrat;
+    font-weight: 500;
+}
+
+.carrosel .lista .item .conteudo button:nth-child(2){
+    background-color: transparent;
+    color: #eee;
+    border: 1px solid #eee;
+}
+
+/* THUMBNAIL */
+.thumbnail{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    width: max-content;
+    z-index: 100;
+    display: flex;
+    gap: 20px;
+}
+
+.thumbnail .item{
+    width: 150px;
+    height: 220px;
+    flex-shrink: 0;
+    position: relative;
+
+}
+
+.thumbnail .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.thumbnail .item .content{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+}
+
+.thumbnail .item .content .title{
+    font-weight: bold;
+}
+
+/* ARROWS */
+.arrows{
+    position: absolute;
+    top: 80%;
+    right: 52%;
+    width: 300px;
+    max-width: 36%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.arrows button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #eee4;
+    border: none;
+    font-family: monospace;
+    color: #fff;
+    font-weight: bold;
+    font-size: large;
+    transition: .5s;
+    z-index: 100;
+}
+
+.arrows button:hover{
+    background-color: #eee;
+    color: #555;
+}
+
+/* ESTILOS DO LAYOUT */
+.carrosel .lista .item:nth-child(1){
+    z-index: 1;
+}
+
+.carrosel .lista .item:nth-child(1) .author,
+.carrosel .lista .item:nth-child(1) .title,
+.carrosel .lista .item:nth-child(1) .topic,
+.carrosel .lista .item:nth-child(1) .des,
+.carrosel .lista .item:nth-child(1) .buttons{
+    transform: translateY(50px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent 0.5s 1s linear 1 forwards;
+}
+
+@keyframes showContent{
+    to{
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+    }
+}
+
+.carrosel .lista .item:nth-child(1) .title{
+    animation-delay: 1.2s;
+}
+
+.carrosel .lista .item:nth-child(1) .topic{
+    animation-delay: 1.4s;
+}
+.carrosel .lista .item:nth-child(1) .des{
+    animation-delay: 1.6s;
+}
+.carrosel .lista .item:nth-child(1) .buttons{
+    animation-delay: 1.8s;
+}
+
+/* effeito do botão next */
+.carrosel.next .lista .item:nth-child(1) img{
+    width: 150px;
+    height: 220px;
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    border-radius: 20px;
+    animation: showImage 0.5s linear 1   forwards;
+}
+
+@keyframes showImage {
+    to{
+        width: 100%;
+        height: 100%;
+        left: 0;
+        bottom: 0;
+        border-radius: 0;
+    }
+}
+
+.carrosel.next .thumbnail .item:nth-last-child(1){
+    width: 0;
+    overflow: hidden;
+    animation: showThumbnail 0.5s linear 1 forwards  ;
+}
+
+@keyframes showThumbnail{
+    to{
+        width: 150px;
+    }
+}
+
+.carrosel.next .thumbnail{
+    transform: translateX(150px);
+    animation: transformThumbnail .5s linear 1 forwards  ;
+}
+
+@keyframes transformThumbnail{
+    to{
+        transform: translateX(0);
+    }
+}
